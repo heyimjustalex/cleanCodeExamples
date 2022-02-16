@@ -9,7 +9,31 @@ import java.util.List;
 
 public class FileReader
 {
-    public static List<String> readFileToSingleString(String filePath) throws IOException
+    public static List<String> readFile(String filePath)
+    {
+        List<String> listOfReadStrings = null;
+       try
+       {
+           listOfReadStrings = extractLinesFrom(filePath);
+       }
+       catch (FileNotFoundException e)
+       {
+           System.out.println("There is no such file");
+           e.printStackTrace();
+           System.exit(-1);
+       }
+       catch (IOException e)
+       {
+           System.out.println("Reading file error");
+           e.printStackTrace();
+           System.exit(-1);
+       }
+
+       return listOfReadStrings;
+    }
+
+
+    private static List<String> extractLinesFrom(String filePath) throws IOException
     {
         File file = new File(filePath);
         BufferedReader bufferedReader = new BufferedReader(new java.io.FileReader(file));
@@ -22,27 +46,6 @@ public class FileReader
         }
 
         return listOfReadStrings;
-    }
-
-    public static List<String> readFile(String filePath)
-    {
-        List<String> listOfReadStrings = null;
-       try
-       {
-           listOfReadStrings = readFileToSingleString(filePath);
-       }
-       catch (FileNotFoundException e)
-       {
-           System.out.println("There is no such file");
-           e.printStackTrace();
-       }
-       catch (IOException e)
-       {
-           System.out.println("Reading file error");
-           e.printStackTrace();
-       }
-
-       return listOfReadStrings;
     }
 
 }

@@ -15,8 +15,8 @@ public class MyCustomFilesCreator
     public static void createCustomFiles(String fileToRead, List<String> myWordsAsInput) throws IOException
     {
         List<String> listOfReadStrings = FileReader.readFile(fileToRead);
-        String readFileContent = combineListIntoString(listOfReadStrings);
-        String inputWordsContent = combineListIntoString(myWordsAsInput);
+        String readFileContent = String.join("\n",listOfReadStrings);
+        String inputWordsContent = String.join("\n",myWordsAsInput);
 
         FileWriter.generateFile("outputFile", "txt",readFileContent+inputWordsContent);
 
@@ -25,17 +25,6 @@ public class MyCustomFilesCreator
         pdfWriter.addMetaInfo("TITLEEEE_TEST",new Tuple("KEYHERE","VALUEHERE"));
         pdfWriter.closeDocument();
 
-    }
-
-    public static String combineListIntoString(List<String> input)
-    {
-        String combinedString = "";
-        for (String str:
-                input) {
-            combinedString += str+'\n';
-        }
-
-        return combinedString;
     }
 
     public static void generateALotOfFiles()
