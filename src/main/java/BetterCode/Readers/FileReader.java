@@ -24,7 +24,7 @@ public class FileReader
         return listOfReadStrings;
     }
 
-    private static List<String> readFile(String filePath)
+    public static List<String> readFile(String filePath)
     {
         List<String> listOfReadStrings = null;
        try

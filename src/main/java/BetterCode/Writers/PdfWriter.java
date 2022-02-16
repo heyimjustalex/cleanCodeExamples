@@ -33,6 +33,9 @@ public class PdfWriter
 
     public void addParagraph(String paragraphContent) throws IOException
     {
+        // This is a deprecated method. Use putParagrapgh() instead
+        // This function is not thread safe
+
         this.paragraphContent = paragraphContent;
         this.pdfDoc.addNewPage();
         this.document = new Document(this.pdfDoc);

@@ -6,6 +6,7 @@ import BetterCode.Writers.FileWriter;
 import BetterCode.Writers.PdfWriter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyCustomFilesCreator
@@ -35,6 +36,26 @@ public class MyCustomFilesCreator
         }
 
         return combinedString;
+    }
+
+    public static void generateALotOfFiles()
+    {
+        List<String> myWordsToSave = new ArrayList<>(5);
+        myWordsToSave.add("Test1");
+        myWordsToSave.add("Test2");
+
+        for (Integer i=0;i<10000;i++)
+        {
+            String s = Integer.toString(i);
+            try
+            {
+                MyCustomFilesCreator.createCustomFiles("input"+s+".txt", myWordsToSave);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
