@@ -1,4 +1,4 @@
-package BetterCode.Readers;
+package BetterCode_ex1.Readers;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,13 +32,12 @@ public class FileReader
        return listOfReadStrings;
     }
 
-
     private static List<String> extractLinesFrom(String filePath) throws IOException
     {
         File file = new File(filePath);
         BufferedReader bufferedReader = new BufferedReader(new java.io.FileReader(file));
-        String str;
         List<String> listOfReadStrings = new ArrayList<>();
+        String str;
 
         while ((str = bufferedReader.readLine()) != null)
         {

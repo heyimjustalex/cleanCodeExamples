@@ -1,9 +1,9 @@
-package BetterCode;
+package BetterCode_ex1;
 
-import BetterCode.Readers.FileReader;
-import BetterCode.Structures.Tuple;
-import BetterCode.Writers.FileWriter;
-import BetterCode.Writers.PdfWriter;
+import BetterCode_ex1.Readers.FileReader;
+import BetterCode_ex1.Structures.Tuple;
+import BetterCode_ex1.Writers.FileWriter;
+import BetterCode_ex1.Writers.PdfWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ public class MyCustomFilesCreator
 
     public static void createCustomFiles(String fileToRead, List<String> myWordsAsInput) throws IOException
     {
+
         List<String> listOfReadStrings = FileReader.readFile(fileToRead);
         String readFileContent = String.join("\n",listOfReadStrings);
         String inputWordsContent = String.join("\n",myWordsAsInput);
@@ -25,6 +26,7 @@ public class MyCustomFilesCreator
         pdfWriter.addMetaInfo("TITLEEEE_TEST",new Tuple("KEYHERE","VALUEHERE"));
         pdfWriter.closeDocument();
 
+
     }
 
     public static void generateALotOfFiles()
@@ -34,6 +36,7 @@ public class MyCustomFilesCreator
         myWordsToSave.add("Test2");
 
         for (Integer i=0;i<10000;i++)
+
         {
             String s = Integer.toString(i);
             try
