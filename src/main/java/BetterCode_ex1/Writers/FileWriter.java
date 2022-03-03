@@ -1,4 +1,4 @@
-package BetterCode.Writers;
+package BetterCode_ex1.Writers;
 
 import java.io.IOException;
 

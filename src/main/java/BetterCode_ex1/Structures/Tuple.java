@@ -1,4 +1,4 @@
-package BetterCode.Structures;
+package BetterCode_ex1.Structures;
 
 public class Tuple<KEY, VALUE> {
     public final KEY key;

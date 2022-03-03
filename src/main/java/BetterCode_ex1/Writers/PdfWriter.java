@@ -1,5 +1,5 @@
-package BetterCode.Writers;
-import BetterCode.Structures.Tuple;
+package BetterCode_ex1.Writers;
+import BetterCode_ex1.Structures.Tuple;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfDocumentInfo;
 import com.itextpdf.layout.Document;
@@ -35,17 +35,19 @@ public class PdfWriter
     {
         // This is a deprecated method. Use putParagrapgh() instead
         // This function is not thread safe
-
         this.paragraphContent = paragraphContent;
         this.pdfDoc.addNewPage();
         this.document = new Document(this.pdfDoc);
         this.document.add(new Paragraph(paragraphContent));
     }
 
+
+
     public void closeDocument()
     {
         this.pdfDoc.close();
         this.document.close();
     }
+
 
 }

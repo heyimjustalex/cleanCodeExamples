@@ -1,8 +1,6 @@
-package BetterCode;
+package BadCode_ex1;
 
-import BetterCode.Writers.PdfWriter;
-import BetterCode.Structures.Tuple;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +13,14 @@ public class Main {
         myWordsToSave.add("Test4");
         myWordsToSave.add("Test5");
 
-        try {
-            MyCustomFilesCreator.createCustomFiles("input.txt", myWordsToSave);
+        ListExporter exporter = new ListExporter();
+
+        try{
+            exporter.combineFilesAndSave(myWordsToSave,"txt","output","C:\\Users\\root\\Desktop\\AUI_LAB3\\clean_code3\\input.txt",true);
         }
-        catch (Exception e)
+        catch (IOException e)
         {
-            e.printStackTrace();
+
         }
-
     }
-
-
-
-
 }
