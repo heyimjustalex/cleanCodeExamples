@@ -1,4 +1,4 @@
-package exceptionsubchapter;
+package exceptions;
 
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
