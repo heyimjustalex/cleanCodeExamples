@@ -37,8 +37,7 @@ public class Demo {
 
             return fileObject;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
     }
 }
