@@ -4,40 +4,99 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.math.BigInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.*;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 class CustomCalculationTest {
+
+    @Test
+    void simpleTest() {
+        int number1 = 2;
+        int number2 = 4;
+        int result = number1 + number2;
+
+        assertThat(result, equalTo(6));
+    }
 
     private CustomCalculation customCalculation;
 
+
     @BeforeEach
     void setup() {
-        char[] separators = {';', ',', '.', ':'};
+        char[] separators = {';', '.', ':'};
         customCalculation = new CustomCalculation(separators);
     }
 
+    @Test
+    void should_addCorrectly_when_correctInput() {
+        // given
+        String input = "12;43;2+";
+
+        // when
+        BigInteger result = customCalculation.calculate(input);
+
+        // then
+        BigInteger expected = BigInteger.valueOf(57);
+        assertEquals(expected, result);
+    }
+
     @Nested
-    class MathOperationOnStringTests {
+    class CalculateTests {
 
-        // todo: make one function instead of these three to introduce parameterized tests
         @Test
-        void should_doCorrectAddition_when_correctInput() {
-            // given
-            String input = "12;43;2+";
+        void givenCorrectInput_whenAdd_thenReturnCorrectResult() {
+            assertEquals(BigInteger.valueOf(57), customCalculation.calculate("12;43;2+"));
+        }
 
+        @ParameterizedTest
+        @CsvSource(
+                delimiter = ',',
+                value = {
+                        "12;43;2+, 57",
+                        "12;43;2-, -57",
+                        "12;43;2*, 1032"
+                })
+        void should_calculateCorrectly_when_correctInput(String input, String expectedResult) {
+            // given input
             // when
-            BigInteger result = customCalculation.calculate(input);
+            BigInteger actualResult = customCalculation.calculate(input);
 
             // then
-            BigInteger expected = BigInteger.valueOf(57);
-            assertEquals(expected, result);
+            int expected = Integer.parseInt(expectedResult);
+            assertEquals(BigInteger.valueOf(expected), actualResult);
+        }
+
+        @ParameterizedTest
+        @CsvSource(
+                delimiter = ',',
+                value = {
+                        "-12;43;2+, 33",
+                        "12;-43;2+, -29",
+                        "12;43;-2+, 53",
+                        "-12;-43;-2+, -57",
+                        // ...
+                })
+        void should_calculateCorrectly_when_negativeInputNumbersExist(String input, String expectedResult) {
+            // given input
+            // when
+            BigInteger actualResult = customCalculation.calculate(input);
+
+            // then
+            int expected = Integer.parseInt(expectedResult);
+            assertEquals(BigInteger.valueOf(expected), actualResult);
         }
 
         @Test
-        void should_doCorrectSubtraction_when_correctInput() {
+        void should_subtractCorrectly_when_correctInput() {
             // given
             String input = "12;43;2-";
 
@@ -50,7 +109,7 @@ class CustomCalculationTest {
         }
 
         @Test
-        void should_doCorrectMultiplication_when_correctInput() {
+        void should_multiplyCorrectly_when_correctInput() {
             // given
             String input = "12;43;2*";
 
@@ -81,10 +140,11 @@ class CustomCalculationTest {
             String emptyString = "";
 
             // when
-            Executable executable = () -> customCalculation.calculate(emptyString);
+            Executable executable =
+                    () -> customCalculation.calculate(emptyString);
 
             // then
-            assertThrows(RuntimeException.class, executable);
+            assertThrows(IncorrectInputException.class, executable);
         }
 
         @Test
@@ -96,7 +156,7 @@ class CustomCalculationTest {
             Executable executable = () -> customCalculation.calculate(justOperator);
 
             // then
-            assertThrows(RuntimeException.class, executable);
+            assertThrows(IncorrectInputException.class, executable);
         }
 
         @Test
@@ -105,10 +165,11 @@ class CustomCalculationTest {
             String inputWithoutOperator = "12;43;";
 
             // when
-            Executable executable = () -> customCalculation.calculate(inputWithoutOperator);
+            Executable executable =
+                    () -> customCalculation.calculate(inputWithoutOperator);
 
             // then
-            assertThrows(RuntimeException.class, executable);
+            assertThrows(IncorrectInputException.class, executable);
         }
 
         @Test
@@ -124,4 +185,8 @@ class CustomCalculationTest {
         }
 
     }
+}
+
+class IncorrectInputException extends RuntimeException {
+
 }

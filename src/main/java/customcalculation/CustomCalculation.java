@@ -44,7 +44,6 @@ public class CustomCalculation {
         }
 
         String operator = getOperator(input);
-        // remove operator from the end
         String numbersWithSeparators = input.substring(0, input.length() - 1);
         List<Integer> numbers = extractNumbersFrom(numbersWithSeparators);
 
