@@ -2,8 +2,8 @@ package SOLID.D.BetterCode.PaymentProcessors;
 
 import SOLID.D.BetterCode.APIS.PaypalAPI;
 
-public class PaypalPaymentProcessor implements IPaymentProcessor{
-
+public class PaypalPaymentProcessor implements IPaymentProcessor
+{
     PaypalAPI paypal;
     String user;
 
@@ -14,7 +14,12 @@ public class PaypalPaymentProcessor implements IPaymentProcessor{
     }
 
     @Override
-    public void pay(Integer amountInDollars) {
+    public void pay(Integer amountInDollars)
+    {
         paypal.makePayment(user, amountInDollars);
     }
 }
+
+
+
+

@@ -21,7 +21,6 @@ public class StoreBusiness
     {
         this.stripe.makePayment(15*quantity*100);
     }
-
-
-
 }
+
+

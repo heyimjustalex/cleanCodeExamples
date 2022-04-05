@@ -15,3 +15,5 @@ public class StripeAPI
         System.out.println(this.user +" paid " + amountInCents/100 + "$ with Stripe");
     }
 }
+
+

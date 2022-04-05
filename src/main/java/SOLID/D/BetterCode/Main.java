@@ -7,7 +7,6 @@ public class Main {
         store1.purchaseBike(2);
         store1.purchaseHelmet(3);
 
-
-
     }
 }
+

@@ -18,3 +18,4 @@ public class StripePaymentProcessor implements IPaymentProcessor
         stripe.makePayment(amountInDollars);
     }
 }
+

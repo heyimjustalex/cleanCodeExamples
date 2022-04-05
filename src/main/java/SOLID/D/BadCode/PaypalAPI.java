@@ -8,3 +8,4 @@ public class PaypalAPI
         System.out.println(user +" paid " + amountInDollars + "$ with Paypal");
     }
 }
+
